@@ -1,10 +1,21 @@
-const express = require("express")
-const app = express()
+// require dependencies
+const express = require("express");
+const cookieParser = require("cookie-parser");
 
-// controllers
-const campaignController = require("./controllers/campaign.js");
+// include controllers
+const campaignController = require("./controller/campaign.js");
 
+// instantiate application
+const app = express();
+
+// apply middleware
+app.use(cookieParser());
+
+// add controllers
 app.use("/campaign", campaignController);
 
-app.listen(3000, () => console.log("Dragontide listening on port 3000!"));
+let port = process.env.app_port || 3000;
+
+// start the application
+app.listen(port, () => console.log("Dragontide is listening on port " + port));
 
