@@ -1,12 +1,10 @@
 const request = require("supertest");
 const express = require("express");
+const campaignController = require("../src/controller/campaign");
+
 const app = express();
 
-app.get("/", (req, res) => {
-  res.status(200).json({
-     content: "Hello world!"
-  });
-});
+app.use("/", campaignController);
 
 describe("GET /", () => {
   it("returns success", done => {
